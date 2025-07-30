@@ -50,3 +50,15 @@ export const updateDepartment =  async(req,res) =>{
         return res.status(500).json({success : false , message : "server error in edit department"})
     }
 }
+
+export const deleteDepartment = async(req,res) =>{
+    try{
+        const {id} = req.params;
+        const deleteDep = await Department.findByIdAndDelete({_id :id })
+
+        return res.status(200).json({success : true , deleteDep})
+    }
+    catch(error){
+        return res.status(500).json({success : false , message : "delete error in edit department"})
+    }
+}
